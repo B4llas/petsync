@@ -1,30 +1,100 @@
-# 🐾 PetSync — Sistema de Gerenciamento de Tutores e Pets
+PetSync · Gestão de Tutores e Pets
 
-Aplicação web desenvolvida em **PHP Orientado a Objetos** aplicando os padrões arquiteturais **MVC (Model-View-Controller)** e **DAO (Data Access Object)** com persistência relacional em **MySQL (PDO)**.
+Aplicação web orientada a objetos em **PHP** para gerenciamento de tutores e seus animais de estimação. O sistema faz parte do ecossistema **PetSync**, construído com arquitetura **MVC**, padrão **DAO** e banco de dados **MySQL**, implementando CRUD completo em duas entidades relacionadas:
 
-## Autor
-* **Marco Vinícius Balula** — R.A.: 9352
+**Usuario 1 ────── N Pet**
 
-## Tecnologias Utilizadas
-* **Backend:** PHP 8+ (POO, PDO, Prepared Statements)
-* **Banco de Dados:** MySQL / MariaDB (InnoDB, Foreign Keys com `ON DELETE CASCADE` e Triggers)
-* **Frontend:** HTML5, CSS3 (Interface responsiva mobile-first)
-* **Ambiente Local:** XAMPP (Apache + MySQL)
+Um tutor cadastrado (`USUARIO`) pode possuir vários animais de estimação (`PET`). Cada pet pertence a exatamente um tutor por meio da chave estrangeira `PET.id_usuario`, utilizando consulta relacional com `INNER JOIN` na listagem e integridade referencial com exclusão em cascata (`ON DELETE CASCADE`).
 
-## Estrutura de Pastas (MVC + DAO)
-* `config/` — Conexão Singleton com o banco via PDO (`Conexao.php`).
-* `model/` — Entidades de domínio (`Usuario.php`, `Pet.php`) e classes de acesso a dados (`UsuarioDAO.php`, `PetDAO.php`).
-* `controller/` — Regras de negócio, sessão e tratamento de formulários (`UsuarioController.php`, `PetController.php`).
-* `view/` — Telas da aplicação e estilização (`index.php`, `meus-pets.php`, `novo-pet.php`, `editar-pet.php`, `perfil.php`, `style.css`).
-* `database/` — Script SQL completo (`petsync.sql`) com criação das tabelas, chaves estrangeiras e dados iniciais.
-* `img/` — Imagens e uploads dos pets.
+---
 
-## Instruções de Execução
-1. Inicie os serviços **Apache** e **MySQL** no painel do **XAMPP**.
-2. Coloque a pasta `petsync` dentro de `C:\xampp\htdocs\`.
-3. Acesse `http://localhost/phpmyadmin`, crie o banco `PetSync_teste` e execute o script `database/petsync.sql`.
-4. Abra `http://localhost/petsync/view/index.php` e entre com `marco@petsync.com`.
+## 🎬 Vídeo de apresentação
 
-## Transparência no Uso de Inteligência Artificial
-* **Desenvolvimento pelo autor:** Levantamento de requisitos, modelagem relacional das tabelas (`USUARIO` e `PET`), regras de negócio (`ON DELETE CASCADE`), prototipação das telas mobile e testes de integração.
-* **Apoio de IA (Google Gemini):** Refatoração da estrutura orientada a objetos para aderência estrita aos padrões MVC e DAO, implementação de *Prepared Statements* no PDO e organização da documentação técnica.
+<img width="506" height="904" alt="image" src="https://github.com/user-attachments/assets/e682b5b4-32c0-4cc5-bde5-925b50cd7ed7" />
+
+
+**Assista no YouTube:** [COLE_O_LINK_DO_YOUTUBE_AQUI](https://youtube.com)
+
+---
+
+## Telas
+
+| Login e Cadastro de Tutor | Listagem de Pets (`INNER JOIN`) |
+| :---: | :---: |
+| <img width="482" height="908" alt="image" src="https://github.com/user-attachments/assets/94f2e35e-1858-4095-86e2-ed98cec96069" /> <img width="484" height="899" alt="image" src="https://github.com/user-attachments/assets/518d6807-e48c-448a-9924-c6f3e57f9f21" /> | <img width="495" height="908" alt="image" src="https://github.com/user-attachments/assets/8516ebb6-a77b-4e05-9a2c-ffa13f7d92c0" /> |
+
+| Cadastro / Edição de Pet | Perfil e Exclusão em Cascata |
+| :---: | :---: |
+| (COLE_O_PRINT_FORM_PET_AQUI) | (COLE_O_PRINT_PERFIL_AQUI) |
+
+---
+
+## Integrante
+
+| Nome | R.A. |
+| :--- | :--- |
+| Marco Vinícius Balula | 9352 |
+
+---
+
+## Tecnologias
+
+* **PHP 8** orientado a objetos, sem framework
+* **PDO** com *prepared statements* para proteção contra SQL Injection
+* **MySQL / MariaDB**, via XAMPP e MySQL Workbench
+* **HTML5 e CSS3** responsivos na camada View
+* Gerenciamento de sessão nativa (`$_SESSION`) e upload de imagens de pets
+
+Não há dependências externas ou Composer para instalar.
+
+---
+
+## Como instalar e executar
+
+### Com XAMPP (recomendado)
+
+1. Instale o **XAMPP** e abra o **XAMPP Control Panel**.
+2. Inicie os serviços **Apache** e **MySQL** (ou utilize o serviço local do MySQL Server na porta `3306`).
+3. Copie a pasta do projeto para `C:\xampp\htdocs\petsync`. Caso baixe o ZIP do GitHub, renomeie a pasta `petsync-main` para `petsync`.
+4. Acesse `http://localhost/phpmyadmin` (ou abra o **MySQL Workbench**), importe/execute o arquivo `database/petsync.sql` para criar o banco `PetSync_teste`, as tabelas `USUARIO` e `PET` e os registros iniciais.
+5. Abra `http://localhost/petsync` no navegador.
+
+Se o seu MySQL utilizar senha ou porta diferente da padrão (`3306`), ajuste as credenciais em `config/Conexao.php`.
+
+---
+
+## Banco de dados
+
+Script completo disponível em `database/petsync.sql`.
+
+```text
+USUARIO                           PET
+───────────────────────           ───────────────────────
+id_usuario          PK ◄──────┐   id_pet              PK
+nome                          └── id_usuario          FK
+email               UNIQUE        nome
+senha_hash                        especie
+telefone                          raca
+metodo_autenticacao               peso_atual
+id_provedor_externo               data_nascimento
+                                  foto
+A chave estrangeira utiliza ON DELETE CASCADE: ao excluir um tutor na tela de perfil, todos os pets vinculados ao seu id_usuario são removidos automaticamente do banco de dados.ArquiteturaPlaintextpetsync/
+├── index.php                     Tela inicial / entrada de autenticação
+├── config/
+│   └── Conexao.php               Conexão única com o banco via PDO (Singleton)
+├── model/
+│   ├── Usuario.php               Entidade Usuario com atributos privados e getters/setters
+│   ├── UsuarioDAO.php            Persistência e CRUD da tabela USUARIO
+│   ├── Pet.php                   Entidade Pet com atributos privados e getters/setters
+│   └── PetDAO.php                Persistência, CRUD e INNER JOIN da tabela PET
+├── controller/
+│   ├── UsuarioController.php     Regras de negócio, login, sessão e CRUD de tutores
+│   └── PetController.php         Validações, upload de foto e CRUD de pets
+├── view/
+│   ├── meus-pets.php             Listagem principal de pets com dados do tutor
+│   ├── cadastro-pet.php          Formulário de criação e edição de pets
+│   └── perfil.php                Edição e exclusão do tutor logado
+├── database/
+│   └── petsync.sql               Script DDL e DML completo do banco MySQL
+└── img/                          Diretório de armazenamento das fotos dos pets
+Como cada camada funcionaModel (Entidades): Usuario e Pet encapsulam os dados do domínio com atributos privados, métodos de acesso (getters e setters) e tipagem consistente com o banco relacional.Model (DAO): Todo o SQL do sistema fica isolado em UsuarioDAO e PetDAO, utilizando PDO com prepared statements e consultas relacionais (INNER JOIN entre PET e USUARIO). A conexão é fornecida por Conexao::getConexao().Controller: Recebe as requisições HTTP (GET e POST), controla a sessão do tutor autenticado, gerencia o upload de arquivos para img/ e aciona os métodos do DAO.View: Camada de apresentação em PHP, HTML5 e CSS3 responsável por exibir as listas e formulários sem misturar consultas SQL.Conceitos de POO aplicadosConceitoOnde foi aplicadoEncapsulamentoAtributos private com métodos getters e setters em Usuario e PetAbstração e CoesãoSeparação clara entre entidades de domínio (Model), persistência (DAO), controle (Controller) e interface (View)Associação / RelacionamentoVínculo 1:N entre Usuario e Pet refletido na chave estrangeira id_usuarioSingletonClasse Conexao garantindo uma única instância ativa de PDO por requisiçãoSegurança e PersistênciaUso de prepared statements (:param) nos DAOs para evitar injeção de SQLCRUDOperaçãoTutor (Usuario)Pet (Pet)CreateCadastro de novo tutor → UsuarioDAO::criarFormulário + Adicionar Pet → PetDAO::criarReadAutenticação e perfil → UsuarioDAO::buscarPorId / listarTodosListagem com INNER JOIN → PetDAO::listarTodos / buscarPorIdUpdateEdição de dados no perfil → UsuarioDAO::atualizarEdição de dados e foto → PetDAO::atualizarDeleteExclusão de conta (ON DELETE CASCADE) → UsuarioDAO::deletarRemoção individual do pet → PetDAO::deletarTransparência de IAEste projeto foi desenvolvido com apoio de ferramentas de inteligência artificial (Gemini e Claude) como assistentes de programação e revisão.Onde a IA foi utilizada:Revisão e alinhamento entre as colunas do script SQL (database/petsync.sql) e os métodos dos arquivos UsuarioDAO.php e PetDAO.phpDiagnóstico de erros de conexão PDO, sintaxe SQL e integridade referencial (ON DELETE CASCADE)Estruturação e formatação da documentação técnica deste README.mdO que foi desenvolvido pelo aluno:Concepção do projeto PetSync e definição dos requisitos funcionais de gestão de tutores e petsImplementação da arquitetura MVC/DAO em PHP, regras de negócio dos controllers e interfaces em HTML/CSSConfiguração do ambiente local (XAMPP e MySQL Workbench), testes manuais de todas as operações CRUD e gravação do vídeo demonstrativo
