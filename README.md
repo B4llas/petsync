@@ -1,4 +1,4 @@
-## PetSync · Gestão de Tutores e Pets
+<img width="1592" height="961" alt="image" src="https://github.com/user-attachments/assets/9dc16491-6c96-4eea-9631-710315d1cd62" />## PetSync · Gestão de Tutores e Pets
 
 Aplicação web orientada a objetos em **PHP** para gerenciamento de tutores e seus animais de estimação. O sistema faz parte do ecossistema **PetSync**, construído com arquitetura **MVC**, padrão **DAO** e banco de dados **MySQL**, implementando CRUD completo em duas entidades relacionadas:
 
@@ -76,7 +76,16 @@ telefone                          raca
 metodo_autenticacao               peso_atual
 id_provedor_externo               data_nascimento
                                   foto
-A chave estrangeira utiliza ON DELETE CASCADE: ao excluir um tutor na tela de perfil, todos os pets vinculados ao seu id_usuario são removidos automaticamente do banco de dados.ArquiteturaPlaintextpetsync/
+```
+
+A chave estrangeira utiliza `ON DELETE CASCADE`: ao excluir um tutor na tela de perfil, todos os pets vinculados ao seu `id_usuario` são removidos automaticamente do banco de dados.
+
+---
+
+## Arquitetura
+
+```text
+petsync/
 ├── index.php                     Tela inicial / entrada de autenticação
 ├── config/
 │   └── Conexao.php               Conexão única com o banco via PDO (Singleton)
@@ -95,4 +104,52 @@ A chave estrangeira utiliza ON DELETE CASCADE: ao excluir um tutor na tela de pe
 ├── database/
 │   └── petsync.sql               Script DDL e DML completo do banco MySQL
 └── img/                          Diretório de armazenamento das fotos dos pets
-Como cada camada funcionaModel (Entidades): Usuario e Pet encapsulam os dados do domínio com atributos privados, métodos de acesso (getters e setters) e tipagem consistente com o banco relacional.Model (DAO): Todo o SQL do sistema fica isolado em UsuarioDAO e PetDAO, utilizando PDO com prepared statements e consultas relacionais (INNER JOIN entre PET e USUARIO). A conexão é fornecida por Conexao::getConexao().Controller: Recebe as requisições HTTP (GET e POST), controla a sessão do tutor autenticado, gerencia o upload de arquivos para img/ e aciona os métodos do DAO.View: Camada de apresentação em PHP, HTML5 e CSS3 responsável por exibir as listas e formulários sem misturar consultas SQL.Conceitos de POO aplicadosConceitoOnde foi aplicadoEncapsulamentoAtributos private com métodos getters e setters em Usuario e PetAbstração e CoesãoSeparação clara entre entidades de domínio (Model), persistência (DAO), controle (Controller) e interface (View)Associação / RelacionamentoVínculo 1:N entre Usuario e Pet refletido na chave estrangeira id_usuarioSingletonClasse Conexao garantindo uma única instância ativa de PDO por requisiçãoSegurança e PersistênciaUso de prepared statements (:param) nos DAOs para evitar injeção de SQLCRUDOperaçãoTutor (Usuario)Pet (Pet)CreateCadastro de novo tutor → UsuarioDAO::criarFormulário + Adicionar Pet → PetDAO::criarReadAutenticação e perfil → UsuarioDAO::buscarPorId / listarTodosListagem com INNER JOIN → PetDAO::listarTodos / buscarPorIdUpdateEdição de dados no perfil → UsuarioDAO::atualizarEdição de dados e foto → PetDAO::atualizarDeleteExclusão de conta (ON DELETE CASCADE) → UsuarioDAO::deletarRemoção individual do pet → PetDAO::deletarTransparência de IAEste projeto foi desenvolvido com apoio de ferramentas de inteligência artificial (Gemini e Claude) como assistentes de programação e revisão.Onde a IA foi utilizada:Revisão e alinhamento entre as colunas do script SQL (database/petsync.sql) e os métodos dos arquivos UsuarioDAO.php e PetDAO.phpDiagnóstico de erros de conexão PDO, sintaxe SQL e integridade referencial (ON DELETE CASCADE)Estruturação e formatação da documentação técnica deste README.mdO que foi desenvolvido pelo aluno:Concepção do projeto PetSync e definição dos requisitos funcionais de gestão de tutores e petsImplementação da arquitetura MVC/DAO em PHP, regras de negócio dos controllers e interfaces em HTML/CSSConfiguração do ambiente local (XAMPP e MySQL Workbench), testes manuais de todas as operações CRUD e gravação do vídeo demonstrativo
+```
+
+---
+
+## Como cada camada funciona
+
+* **Model (Entidades):** `Usuario` e `Pet` encapsulam os dados do domínio com atributos privados, métodos de acesso (*getters* e *setters*) e tipagem consistente com o banco relacional.
+* **Model (DAO):** Todo o SQL do sistema fica isolado em `UsuarioDAO` e `PetDAO`, utilizando `PDO` com *prepared statements* e consultas relacionais (`INNER JOIN` entre `PET` e `USUARIO`). A conexão é fornecida por `Conexao::getConexao()`.
+* **Controller:** Recebe as requisições HTTP (`GET` e `POST`), controla a sessão do tutor autenticado, gerencia o upload de arquivos para `img/` e aciona os métodos do DAO.
+* **View:** Camada de apresentação em PHP, HTML5 e CSS3 responsável por exibir as listas e formulários sem misturar consultas SQL.
+
+---
+
+## Conceitos de POO aplicados
+
+| Conceito | Onde foi aplicado |
+| :--- | :--- |
+| **Encapsulamento** | Atributos `private` com métodos *getters* e *setters* em `Usuario` e `Pet` |
+| **Abstração e Coesão** | Separação clara entre entidades de domínio (`Model`), persistência (`DAO`), controle (`Controller`) e interface (`View`) |
+| **Associação / Relacionamento** | Vínculo `1:N` entre `Usuario` e `Pet` refletido na chave estrangeira `id_usuario` |
+| **Singleton** | Classe `Conexao` garantindo uma única instância ativa de `PDO` por requisição |
+| **Segurança e Persistência** | Uso de *prepared statements* (`:param`) nos DAOs para evitar injeção de SQL |
+
+---
+
+## CRUD
+
+| Operação | Tutor (`Usuario`) | Pet (`Pet`) |
+| :--- | :--- | :--- |
+| **Create** | Cadastro de novo tutor → `UsuarioDAO::criar` | Formulário `+ Adicionar Pet` → `PetDAO::criar` |
+| **Read** | Autenticação e perfil → `UsuarioDAO::buscarPorId` / `listarTodos` | Listagem com `INNER JOIN` → `PetDAO::listarTodos` / `buscarPorId` |
+| **Update** | Edição de dados no perfil → `UsuarioDAO::atualizar` | Edição de dados e foto → `PetDAO::atualizar` |
+| **Delete** | Exclusão de conta (`ON DELETE CASCADE`) → `UsuarioDAO::deletar` | Remoção individual do pet → `PetDAO::deletar` |
+
+---
+
+## Transparência de IA
+
+Este projeto foi desenvolvido com apoio de ferramentas de inteligência artificial (**Gemini** e **Claude**) como assistentes de programação e revisão.
+
+**Onde a IA foi utilizada:**
+* Revisão e alinhamento entre as colunas do script SQL (`database/petsync.sql`) e os métodos dos arquivos `UsuarioDAO.php` e `PetDAO.php`
+* Diagnóstico de erros de conexão PDO, sintaxe SQL e integridade referencial (`ON DELETE CASCADE`)
+* Estruturação e formatação da documentação técnica deste `README.md`
+
+**O que foi desenvolvido pelo aluno:**
+* Concepção do projeto **PetSync** e definição dos requisitos funcionais de gestão de tutores e pets
+* Implementação da arquitetura MVC/DAO em PHP, regras de negócio dos controllers e interfaces em HTML/CSS
+* Configuração do ambiente local (XAMPP e MySQL Workbench), testes manuais de todas as operações CRUD e gravação do vídeo demonstrativo
