@@ -10,7 +10,6 @@ Um tutor cadastrado (`USUARIO`) pode possuir vários animais de estimação (`PE
 
 ## 🎬 Vídeo de apresentação
 
-<img width="506" height="904" alt="image" src="https://github.com/user-attachments/assets/e682b5b4-32c0-4cc5-bde5-925b50cd7ed7" />
 
 
 ---
