@@ -1,4 +1,4 @@
-PetSync · Gestão de Tutores e Pets
+#PetSync · Gestão de Tutores e Pets
 
 Aplicação web orientada a objetos em **PHP** para gerenciamento de tutores e seus animais de estimação. O sistema faz parte do ecossistema **PetSync**, construído com arquitetura **MVC**, padrão **DAO** e banco de dados **MySQL**, implementando CRUD completo em duas entidades relacionadas:
 
