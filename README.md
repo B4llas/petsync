@@ -25,7 +25,7 @@ Um tutor cadastrado (`USUARIO`) pode possuir vários animais de estimação (`PE
 
 | Cadastro / Edição de Pet | Perfil e Exclusão em Cascata |
 | :---: | :---: |
-| (COLE_O_PRINT_FORM_PET_AQUI) | (COLE_O_PRINT_PERFIL_AQUI) |
+| <img width="433" height="861" alt="image" src="https://github.com/user-attachments/assets/2792a761-741c-4829-afee-afa0988d532a" /> | <img width="433" height="796" alt="image" src="https://github.com/user-attachments/assets/090fecea-826f-47eb-8e81-f68990142778" /> |
 
 ---
 
