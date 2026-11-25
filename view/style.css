@@ -1,0 +1,512 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #22252a;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.tela-celular {
+    width: 390px;
+    min-height: 720px;
+    background-color: #f0f2f5;
+    color: #333333;
+    border-radius: 30px;
+    border: 8px solid #111111;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.topo-app {
+    background-color: #ffffff;
+    padding: 14px 18px;
+    border-bottom: 1px solid #dddddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #ff6b00;
+    font-size: 20px;
+}
+
+.perfil-topo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.usuario-logado {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    background-color: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    padding: 4px 10px 4px 5px;
+    border-radius: 20px;
+    color: #333333;
+    font-size: 12px;
+    font-weight: bold;
+    transition: border-color 0.2s;
+}
+
+.usuario-logado:hover {
+    border-color: #ff6b00;
+    color: #ff6b00;
+}
+
+.avatar-usuario {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #ff6b00;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-sair {
+    text-decoration: none;
+    color: #888888;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.btn-sair:hover {
+    color: #dc2626;
+}
+
+.conteudo-app {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cartao {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.cartao h2 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.cartao h4 {
+    font-size: 13px;
+    color: #666666;
+    margin-bottom: 8px;
+}
+
+.subtexto {
+    font-size: 13px;
+    color: #666666;
+    margin-bottom: 15px;
+}
+
+.titulo-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.titulo-linha h2 {
+    margin-bottom: 0;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.campo label {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #444444;
+}
+
+.campo input {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f8f9fa;
+}
+
+.btn-laranja,
+.btn-escuro,
+.btn-sair-conta,
+.btn-cancelar {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background-color 0.2s;
+}
+
+.btn-laranja {
+    background-color: #ff6b00;
+}
+
+.btn-laranja:hover {
+    background-color: #e05e00;
+}
+
+.btn-escuro {
+    background-color: #333333;
+}
+
+.btn-escuro:hover {
+    background-color: #1a1a1a;
+}
+
+.btn-sair-conta {
+    background-color: #dc2626;
+    margin-top: 16px;
+}
+
+.btn-sair-conta:hover {
+    background-color: #b91c1c;
+}
+
+.btn-cancelar {
+    background-color: #e5e7eb;
+    color: #444444;
+}
+
+.btn-cancelar:hover {
+    background-color: #d1d5db;
+}
+
+.link-alternar {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 12px;
+    color: #666666;
+}
+
+.link-alternar a {
+    color: #ff6b00;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link-alternar a:hover {
+    text-decoration: underline;
+}
+
+.topo-saudacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2px;
+}
+
+.saudacao-usuario {
+    font-size: 20px;
+    color: #22252a;
+}
+
+.subtexto-pets {
+    font-size: 13px;
+    color: #666666;
+    margin-top: -6px;
+}
+
+.btn-adicionar-pet {
+    background-color: #ff6b00;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 12px;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.btn-adicionar-pet:hover {
+    background-color: #e05e00;
+}
+
+.btn-alterar-pet {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #333333;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.btn-alterar-pet:hover {
+    border-color: #ff6b00;
+    color: #ff6b00;
+}
+
+.cartao-escolha-pet {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 14px;
+    padding: 16px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.cartao-escolha-pet:hover {
+    border-color: #ff6b00;
+    transform: translateY(-2px);
+}
+
+.seta-pet {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6b00;
+}
+
+.perfil-pet {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.perfil-pet.sem-margem {
+    margin-bottom: 0;
+}
+
+.perfil-pet img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff6b00;
+}
+
+.perfil-pet div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.perfil-pet strong {
+    font-size: 19px;
+    color: #ff6b00;
+}
+
+.perfil-pet span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.lista-resumo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.item-resumo {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.texto-verde {
+    color: #16a34a;
+}
+
+.btn-editar {
+    background-color: #f8f9fa;
+    border: 1px solid #cccccc;
+    color: #333333;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-editar:hover {
+    background-color: #fff3eb;
+    border-color: #ff6b00;
+    color: #ff6b00;
+}
+
+.box-racao {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 12px 0 15px 0;
+}
+
+.texto-racao {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.barra-fundo {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra-preenchida {
+    height: 100%;
+    background-color: #ff6b00;
+}
+
+.lista-horarios {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lista-horarios li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.lista-horarios li > div:first-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-horarios li span {
+    font-size: 12px;
+    color: #666666;
+}
+
+.hora-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 3px;
+}
+
+.etiqueta-verde {
+    background-color: #dcfce7;
+    color: #16a34a;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.chave-switch {
+    width: 44px;
+    height: 24px;
+    background-color: #d1d5db;
+    border-radius: 20px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.chave-switch .bolinha {
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.chave-switch.ligada {
+    background-color: #16a34a;
+    justify-content: flex-end;
+}
+
+.tabela-vacinas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.tabela-vacinas th,
+.tabela-vacinas td {
+    text-align: left;
+    padding: 8px 4px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.item-petshop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.item-petshop p {
+    font-size: 11px;
+    color: #666666;
+    margin-top: 2px;
+}
+
+.menu-inferior {
+    background-color: #ffffff;
+    border-top: 1px solid #dddddd;
+    padding: 14px 10px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.menu-inferior a {
+    text-decoration: none;
+    color: #555555;
+}
+
+.menu-inferior a:hover,
+.menu-inferior a.aba-ativa {
+    color: #ff6b00;
+}
